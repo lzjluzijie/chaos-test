@@ -1,0 +1,48 @@
+---
+title: geth
+description: geth clique testing
+steady-state-hypothesis:
+  title: Geth responds
+  probes:
+  - type: probe
+    name: we-can-request-geth
+    tolerance: 200
+    provider:
+      type: http
+      timeout: 1
+      url: http://localhost:8080/
+      method: POST
+      headers:
+        Content-Type: application/json
+      arguments:
+        jsonrpc: '2.0'
+        method: eth_blockNumber
+        id: 1
+        # params:
+method:
+- type: action
+  name: send-transaction
+  provider:
+    type: http
+    timeout: 1
+    url: http://localhost:8080/
+    method: POST
+    headers:
+      Content-Type: application/json
+    arguments:
+      jsonrpc: '2.0'
+      method: eth_sendTransaction
+      id: 1
+      params:
+      - from: '0x216a8327D2036EC8e8CF0852C729BA719d364317'
+        to: '0xAA1746e81647D269F6264727f4b208c305E85546'
+        gas: '0x76c0'
+        gasPrice: '0x9184e72a000'
+        value: '0x9184e72a'
+rollbacks:
+- type: action
+  name: nothing
+  provider:
+    type: process
+    path: echo
+    arguments: rollback

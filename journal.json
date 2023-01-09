@@ -1,0 +1,243 @@
+{
+  "chaoslib-version": "1.29.0",
+  "platform": "Linux-6.0.15-200.fc36.x86_64-x86_64-with-glibc2.35",
+  "node": "redmi",
+  "experiment": {
+    "title": "geth",
+    "description": "geth clique testing",
+    "steady-state-hypothesis": {
+      "title": "Geth responds",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "we-can-request-geth",
+          "tolerance": 200,
+          "provider": {
+            "type": "http",
+            "timeout": 1,
+            "url": "http://localhost:8080/",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "arguments": {
+              "jsonrpc": "2.0",
+              "method": "eth_blockNumber",
+              "id": 1
+            }
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "send-transaction",
+        "provider": {
+          "type": "http",
+          "timeout": 1,
+          "url": "http://localhost:8080/",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "arguments": {
+            "jsonrpc": "2.0",
+            "method": "eth_sendTransaction",
+            "id": 1,
+            "params": [
+              {
+                "from": "0x216a8327D2036EC8e8CF0852C729BA719d364317",
+                "to": "0xAA1746e81647D269F6264727f4b208c305E85546",
+                "gas": "0x76c0",
+                "gasPrice": "0x9184e72a000",
+                "value": "0x9184e72a"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "rollbacks": [
+      {
+        "type": "action",
+        "name": "nothing",
+        "provider": {
+          "type": "process",
+          "path": "echo",
+          "arguments": "rollback"
+        }
+      }
+    ],
+    "dry": null
+  },
+  "start": "2023-01-09T01:18:28.000974",
+  "status": "completed",
+  "deviated": false,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "we-can-request-geth",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "timeout": 1,
+              "url": "http://localhost:8080/",
+              "method": "POST",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "arguments": {
+                "jsonrpc": "2.0",
+                "method": "eth_blockNumber",
+                "id": 1
+              }
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Encoding": "gzip",
+              "Content-Type": "application/json",
+              "Date": "Mon, 09 Jan 2023 01:18:28 GMT",
+              "Content-Length": "65"
+            },
+            "body": {
+              "jsonrpc": "2.0",
+              "id": 1,
+              "result": "0xed"
+            }
+          },
+          "status": "succeeded",
+          "start": "2023-01-09T01:18:28.003038",
+          "end": "2023-01-09T01:18:28.006274",
+          "duration": 0.003236,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "we-can-request-geth",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "timeout": 1,
+              "url": "http://localhost:8080/",
+              "method": "POST",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "arguments": {
+                "jsonrpc": "2.0",
+                "method": "eth_blockNumber",
+                "id": 1
+              }
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Encoding": "gzip",
+              "Content-Type": "application/json",
+              "Date": "Mon, 09 Jan 2023 01:18:28 GMT",
+              "Content-Length": "65"
+            },
+            "body": {
+              "jsonrpc": "2.0",
+              "id": 1,
+              "result": "0xed"
+            }
+          },
+          "status": "succeeded",
+          "start": "2023-01-09T01:18:28.044039",
+          "end": "2023-01-09T01:18:28.052688",
+          "duration": 0.008649,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "during": []
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "send-transaction",
+        "provider": {
+          "type": "http",
+          "timeout": 1,
+          "url": "http://localhost:8080/",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "arguments": {
+            "jsonrpc": "2.0",
+            "method": "eth_sendTransaction",
+            "id": 1,
+            "params": [
+              {
+                "from": "0x216a8327D2036EC8e8CF0852C729BA719d364317",
+                "to": "0xAA1746e81647D269F6264727f4b208c305E85546",
+                "gas": "0x76c0",
+                "gasPrice": "0x9184e72a000",
+                "value": "0x9184e72a"
+              }
+            ]
+          }
+        }
+      },
+      "output": {
+        "status": 200,
+        "headers": {
+          "Content-Encoding": "gzip",
+          "Content-Type": "application/json",
+          "Date": "Mon, 09 Jan 2023 01:18:28 GMT",
+          "Content-Length": "116"
+        },
+        "body": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": "0x60407f5df17e79c5b998fcb35b797ac88dad92bb334483820f146928279ab1a1"
+        }
+      },
+      "status": "succeeded",
+      "start": "2023-01-09T01:18:28.007050",
+      "end": "2023-01-09T01:18:28.042790",
+      "duration": 0.03574
+    }
+  ],
+  "rollbacks": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "nothing",
+        "provider": {
+          "type": "process",
+          "path": "echo",
+          "arguments": "rollback"
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": "rollback\n",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2023-01-09T01:18:28.053561",
+      "end": "2023-01-09T01:18:28.056948",
+      "duration": 0.003387
+    }
+  ],
+  "end": "2023-01-09T01:18:28.057111",
+  "duration": 0.06001400947570801
+}
